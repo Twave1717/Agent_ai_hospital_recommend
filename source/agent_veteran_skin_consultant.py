@@ -197,30 +197,27 @@ if __name__ == "__main__":
         # 단계 3: 병원 정보 필터링
         hospital_info_str = load_and_filter_hospitals(HOSPITAL_CSV_PATH, category)
 
-        # ✅ 단계 4: 최종 프롬프트 구성 및 API 직접 호출
-        # 시스템 프롬프트의 플레이스홀더를 실제 정보로 채움
+        # ✅ [수정] 단계 4: API 호출 전, 현재 사용자 입력을 대화 기록에 미리 추가
+        current_user_parts = [user_input]
+        if selected_pdf_handle:
+            current_user_parts.append(selected_pdf_handle)
+        conversation_history.append({'role': 'user', 'parts': current_user_parts})
+
+        # 최종 프롬프트에서 시스템 부분만 분리
         final_system_prompt = system_prompt_template.replace("((HOSPITAL_LIST))", hospital_info_str) \
                                                     .replace("((SUBMITTED_PHOTOS))", "사용자가 제출한 이미지가 없습니다.") \
-                                                    .replace("((CONVERSATION_HISTORY))", "") # 이전 대화는 기록에 포함되므로 비워둠
-
-        # API에 전달할 전체 대화 내용 구성
-        contents_for_api: List[Any] = [final_system_prompt]
-        contents_for_api.extend(conversation_history)  # 이전 대화 기록 추가
-        contents_for_api.append(user_input)            # 현재 사용자 질문 추가
-        if selected_pdf_handle:
-            contents_for_api.append(selected_pdf_handle) # 선택된 PDF 파일 핸들 추가
+                                                    .replace("((CONVERSATION_HISTORY))", str(conversation_history))
 
         print("\n🤖 상담 실장에게 답변을 요청하는 중...")
         response = client.models.generate_content(
             model="gemini-1.5-flash-latest",
-            contents=contents_for_api,
-                    config=types.GenerateContentConfig(
+            contents=final_system_prompt,
+            config=types.GenerateContentConfig(
                 temperature=0.3
             )
         )
         response_text = response.text
         print(f"\n상담 실장: {response_text}")
 
-        # ✅ 단계 5: 대화 기록 수동 업데이트
-        conversation_history.append({'role': 'user', 'parts': [user_input]})
-        conversation_history.append({'role': 'model', 'parts': [response_text]})
+        # ✅ [수정] 단계 5: 모델의 답변만 대화 기록에 추가 (사용자 입력은 이미 추가됨)
+        conversation_history.append({'role': 'model', 'parts': response_text})
