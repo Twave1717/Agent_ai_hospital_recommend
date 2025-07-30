@@ -1,4 +1,4 @@
-# Dokdo Flow Plus (MCP ver.)
+# 피부과 상담 + 예약 챗봇
 
 Agentic AI 특강 : **피부과 간이 상담 + 추천 챗봇**
 
