@@ -1,0 +1,28 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# Data
+data/
+mcp_servers/images/
+mcp_servers/data/
+mcp_servers/embeddings/
+*.pdf
+*.png
+
+*.log
+pyenv.sh
+.python-version

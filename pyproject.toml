@@ -1,0 +1,65 @@
+[tool.poetry]
+name        = "langgraph-mcp-agents"
+version     = "0.1.0"
+description = ""
+authors     = ["Ki Yong Jung <wjdrldyd0213@gmail.com>"]
+readme      = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+
+# ── 필수 LLM/RAG 스택 ─────────────────────────────────────────
+langchain               = "^0.3.25"
+langchain-community     = "^0.3.24"
+langchain-experimental  = "^0.3.4"
+langchain-openai        = "^0.3.18"
+langchain-anthropic     = "^0.3.13"
+langgraph               = "^0.4.7"
+mcp                     = "^1.9.1"
+langchain-mcp-adapters  = "^0.1.1"
+
+# ── 데이터분석 / UI ───────────────────────────────────────────
+streamlit   = "^1.45.1"
+notebook    = "^7.4.3"
+pandas      = "^2.2.3"
+matplotlib  = "^3.10.3"
+seaborn     = "^0.13.2"
+
+# ── 검색 · 임베딩 ─────────────────────────────────────────────
+faiss-cpu            = "1.11.0"         # CPU 전용
+sentence-transformers = "^4.1.0"
+
+# ── PyTorch 2.2.2 + CUDA 12.1 ────────────────────────────────
+torch       = {version = "2.2.2+cu121", source = "torchcu"}
+torchvision = {version = "0.17.2+cu121", source = "torchcu"}
+torchaudio  = {version = "2.2.2+cu121", source = "torchcu"}
+
+# ── 호환성 고정 ───────────────────────────────────────────────
+numpy     = ">=1.23,<2.0"   # 1.26.x
+networkx  = "<3.3"
+openai    = "^1.82.0"
+pypdf = "^5.7.0"
+watchdog = "^6.0.0"
+fastapi = "^0.116.0"
+sseclient = "^0.0.27"
+python-dotenv = "^1.1.1"
+google-genai = "^1.27.0"
+httpx = "^0.28.1"
+regex = "^2024.11.6"
+selenium = "^4.34.2"
+beautifulsoup4 = "^4.13.4"
+webdriver-manager = "^4.0.2"
+selenium-stealth = "^1.0.6"
+
+[[tool.poetry.source]]
+name     = "pypi"
+priority = "primary"
+
+[[tool.poetry.source]]
+name     = "torchcu"
+url      = "https://download.pytorch.org/whl/cu121"
+priority = "explicit"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
