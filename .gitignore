@@ -20,3 +20,29 @@ wheels/
 pyenv.sh
 .python-version
 temp/*
+.accounts.json
+.kauth.json
+
+
+# .gitignore
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node.js
+node_modules/
+dist/
+build/
+*.log
+
+# IDE/Editor folders
+.vscode/
+.idea/
+
+# Secrets
+.env
+.secrets/
+*.json # kakao_token.json 같은 파일을 위해 (더 구체적으로 지정하는 것이 좋음)
+.claude/

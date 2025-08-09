@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "kakao-agent"
+version = "0.1.0"
+description = ""
+authors = ["Ki Yong Jung <wjdrldyd0213@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+google = "^3.0.0"
+mcp = "^1.12.3"
+dotenv = "^0.9.9"
+python-dotenv = "^1.1.1"
+google-adk = "^1.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

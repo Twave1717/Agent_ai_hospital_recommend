@@ -50,6 +50,9 @@ beautifulsoup4 = "^4.13.4"
 webdriver-manager = "^4.0.2"
 langchain-google-genai = "^2.1.8"
 google-genai = ">=1.27.0" 
+google-adk = "^1.9.0"
+uv = "^0.8.4"
+google = "^3.0.0"
 
 [[tool.poetry.source]]
 name     = "pypi"
